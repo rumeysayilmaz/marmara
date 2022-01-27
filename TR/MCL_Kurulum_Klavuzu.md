@@ -101,7 +101,7 @@ Tamamlandığında, Marmara Kredi Döngüleri blokzinirini kurmak için aşağı
 #### Marmara Kredi Döngüleri Reposunun Klonlanması
 ```	
 cd ~
-git clone https://github.com/marmarachain/marmara komodo --branch master --single-branch
+git clone https://github.com/marmarachain/marmara --branch master --single-branch
 ```
 >8 GB RAM veya üstüne sahipseniz aşağıdaki adımları atlayarak **__Zcash Parametrelerinin Çekilmesi__** adımına geçiniz.
 
@@ -122,7 +122,7 @@ sudo swapon /swapfile
 ```
 #### Zcash Parametrelerinin Çekilmesi
 ```
-cd komodo
+cd marmara
 ./zcutil/fetch-params.sh
 ./zcutil/build.sh -j$(nproc)
 ```
