@@ -28,7 +28,7 @@ class CChainPower;
 #include "pow.h"
 #include "tinyformat.h"
 #include "uint256.h"
-#include "util/strencodings.h"
+#include "utilstrencodings.h"
 
 #include <vector>
 
