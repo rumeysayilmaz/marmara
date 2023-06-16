@@ -20,7 +20,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update  # prevents repo404 errors on apt-remove below
-        sudo apt-get remove php5.6-fpm php7.0-fpm php7.1-fpm php7.2-fpm php7.3-fpm php7.3-common php7.4-fpm msodbcsql17
+        sudo apt-get remove php*  msodbcsql17 mysql* powershell containernetworking-* containers* dotn*
         sudo ACCEPT_EULA=Y apt-get upgrade -y
         sudo apt-get update
         sudo apt-get install build-essential \
@@ -92,12 +92,9 @@ jobs:
           move komodod_win\komodod_win.zip
           7z e komodod_win.zip
           move komodod.exe src\
-          vcpkg install curl openssl
           python.exe -m pip install --upgrade setuptools
           python.exe -m pip install --upgrade pip
-          python.exe -m pip install wheel
-          python.exe -m pip install pycurl==7.43.0.5
-          python.exe -m pip install pytest wget jsonschema
+          python.exe -m pip install pycurl pytest wget jsonschema
           python.exe -m pip install slick-bitcoinrpc
           zcutil\fetch-params.bat
       - name: Base RPC Test (Windows)
@@ -158,12 +155,9 @@ jobs:
           move komodod_win\komodod_win.zip
           7z e komodod_win.zip
           move komodod.exe src\
-          vcpkg install curl openssl
           python.exe -m pip install --upgrade setuptools
           python.exe -m pip install --upgrade pip
-          python.exe -m pip install wheel
-          python.exe -m pip install pycurl==7.43.0.5
-          python.exe -m pip install pytest wget jsonschema
+          python.exe -m pip install pycurl pytest wget jsonschema
           python.exe -m pip install slick-bitcoinrpc
           zcutil\fetch-params.bat
       - name: CC Oracles (Windows)
