@@ -10,7 +10,7 @@ jobs:
 
   linux-build:
     name: Linux Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
           DEBIAN_FRONTEND: noninteractive
         run: |
           sudo apt-get update  # prevents repo404 errors on apt-remove below
-          sudo apt-get remove php5.6-fpm php7.0-fpm php7.1-fpm php7.2-fpm php7.3-fpm php7.3-common php7.4-fpm msodbcsql17 mysql-server*
+          sudo apt-get remove php* msodbcsql17 mysql* powershell dotn*
           sudo apt-get update
           sudo ACCEPT_EULA=Y apt-get upgrade -y
           sudo apt-get install -q \
@@ -32,6 +32,8 @@ jobs:
                  python3-pip \
                  libcurl4-openssl-dev \
                  libssl-dev -y
+          python3 -m pip install setuptools wheel
+          python3 -m pip install slick-bitcoinrpc pytest wget jsonschema
       - name: Build (Linux)
         run: |
           # flag for some CC tests transactions - so DO NOT USE THIS CI ARTIFACTS IN PRODUCTION!!!
@@ -81,7 +83,7 @@ jobs:
   linux-test-oracles:
 
     name: Test (Linux/OraclesCC)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs: linux-build
 
     steps:
@@ -116,7 +118,7 @@ jobs:
   linux-test-baserpc:
 
     name: Test (Linux/BasicRPC)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs: linux-build
 
     steps:
@@ -151,7 +153,7 @@ jobs:
   linux-test-channels:
 
     name: Test (Linux/ChannelsCC)
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     needs: linux-build
 
     steps:
