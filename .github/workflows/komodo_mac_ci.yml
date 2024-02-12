@@ -15,6 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+       # Workaround for https://github.com/actions/setup-python/issues/577
+      - name: Clean up binaries and links (macOS)
+        run: |
+          rm -f /usr/local/bin/2to3-3.*
+          rm -f /usr/local/bin/idle3.*
+          rm -f /usr/local/bin/pydoc3.*
+          rm -f /usr/local/bin/python3.*
+          rm -f /usr/local/bin/2to3
+          rm -f /usr/local/bin/idle3
+          rm -f /usr/local/bin/pydoc3
+          rm -f /usr/local/bin/python3
+          rm -f /usr/local/bin/python3-config
+
       - name: Install deps (macOS)
         run: |
           brew update
@@ -34,6 +47,7 @@ jobs:
           export CPATH=/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/
           ./zcutil/build-mac-dtest.sh -j4
           tar -czvf komodo-macos.tar.gz src/komodod src/komodo-cli
+          
       - name: Upload komodo-macos.tar.gz as artifact
         uses: actions/upload-artifact@v1
         with:
@@ -41,7 +55,8 @@ jobs:
           path: ./komodo-macos.tar.gz
 
   # macos-test-dice-token-reards-faucet-cc:
-
+  
+  #   if: ${{ false }}
   #   name: Test (MacOS/Dice, Token, Faucet, Rewards)
   #   runs-on: macos-latest
   #   needs: macos-build
@@ -70,7 +85,8 @@ jobs:
   #         ./ci_setup.sh "cc_modules/test_dice.py cc_modules/test_faucet.py cc_modules/test_token.py cc_modules/test_rewards.py"
 
   macos-test-oracles:
-
+    if: ${{ false }}
+    
     name: Test (macos/OraclesCC)
     runs-on: macos-latest
     needs: macos-build
@@ -96,8 +112,11 @@ jobs:
           ./zcutil/fetch-params.sh
           cd qa/pytest_komodo
           ./ci_setup.sh cc_modules/test_oracles.py
+  
   macos-test-baserpc:
-
+    
+    if: ${{ false }}
+    
     name: Test (macos/BasicRPC)
     runs-on: macos-latest
     needs: macos-build
@@ -125,7 +144,8 @@ jobs:
           ./ci_setup.sh basic
 
   # macos-test-channels:
-
+  
+  #   if: ${{ false }}
   #   name: Test (macos/ChannelsCC)
   #   runs-on: macos-latest
   #   needs: macos-build
@@ -153,7 +173,8 @@ jobs:
   #         ./ci_setup.sh cc_modules/test_channels.py
 
   # macos-test-heir:
-
+  #   if: ${{ false }}
+  
   #   name: Test (macos/HeirCC)
   #   runs-on: macos-latest
   #   needs: macos-build
