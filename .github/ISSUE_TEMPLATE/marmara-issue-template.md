@@ -1,8 +1,13 @@
-<!--- Remove text and sections that do not apply -->
+---
+name: Marmara Issue Template
+about: This issue tracker is only for technical issues related to marmarad.
+title: ''
+labels: ''
+assignees: ''
 
-This issue tracker is only for technical issues related to komodod
+---
 
-General Komodo questions and/or support requests and are best directed to [Discord](https://komodoplatform.com/discord)
+General Marmara questions and/or support requests and are best directed to [Discord](https://marmara.io/discord)
 
 ### Describe the issue
 Please provide a general summary of the issue you're experiencing
@@ -19,8 +24,8 @@ Tell us what should happen
 ### Actual behaviour + errors
 Tell us what happens instead including any noticable error output (any messages displayed on-screen when e.g. a crash occurred)
 
-### The version of Komodo you were using:
-Run `komodod --version` to find out
+### The version of Marmara you were using:
+Run `marmarad --version` to find out
 
 ### Machine specs:
 - OS name + version:
